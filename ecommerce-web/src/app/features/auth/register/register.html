@@ -1,0 +1,18 @@
+<div class="auth-page">
+    <h2>Register</h2>
+    <form (ngSubmit)="onSubmit()">
+        <input type="text" placeholder="First Name" [(ngModel)]="firstName" name ="firstName" required/>
+        <input type="text" placeholder="Last Name" [(ngModel)]="lastName" name ="lastName" required/>
+        <input type="Email" placeholder="Email" [(ngModel)]="email" name ="email" required/>
+        <input type="Password" placeholder="Password" [(ngModel)]="password" name ="password" required/>
+        <input type="text" placeholder="Phone Number" [(ngModel)]="phoneNumber" name ="phoneNumber" required/>
+   
+        <div *ngIf = "error" class="error">
+            {{error}}
+        </div>
+        <button type="submit" [disabled]="loading">
+            {{loading ? 'Registering...' : 'Register'}}
+        </button>
+    </form>
+    <p>Already have an account?<a routerLink="/login">Login</a></p>
+</div>

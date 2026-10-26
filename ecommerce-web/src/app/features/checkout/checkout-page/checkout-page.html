@@ -1,0 +1,29 @@
+<div class="checkout-page">
+    <h2>Checkout</h2>
+
+    <div *ngIf="cartService.getItems().length === 0"> Your cart is empty.<a routerLink = "/products">Go shopping</a></div>
+    <div *ngIf="cartService.getItems().length > 0 ">
+        <h3>Order Summary</h3>
+
+        <div *ngFor="let item of cartService.getItems()">
+            {{item.productName}} x {{item.quantity}} = {{item.price * item.quantity}}
+        </div>
+
+        <p><strong>Total : {{cartService.getTotal()}}</strong></p>
+
+        <h3>Shipping Address</h3>
+        <form (ngSubmit) = "placeOrder()">
+            <input type="text" placeholder="Address" [(ngModel)] ="shippingAddress" name ="shippingAddress" required/>
+            <input type="text" placeholder="City" [(ngModel)] ="city" name ="city" required/>
+            <input type="text" placeholder="Postal Code" [(ngModel)] ="postalCode" name ="postalCode" required/>
+            <input type="text" placeholder="Country" [(ngModel)] ="country" name ="country" required/>
+
+            <div *ngIf="error" class="error">{{error}}</div>
+
+            <button type = "submit" [disabled] = "placing">
+                {{placing ? 'Placing order....':'Place Order'}}
+            </button>
+        </form>
+    </div>
+
+</div>

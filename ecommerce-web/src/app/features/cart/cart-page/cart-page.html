@@ -1,0 +1,22 @@
+<div class = "cart-page">
+    <h2>Your Cart</h2>
+    <div *ngIf="cartService.getItems().length === 0">Your cart is empty.</div>
+
+    <div *ngIf="cartService.getItems().length > 0">
+        <div *ngFor = "let item of cartService.getItems()" class = "cart-item">
+            <img [src] = "item.imageUrl" [alt] = "item.productName" />
+            <div class="cart-item-details">
+                <h4>{{item.productName}}</h4>
+            <p>{{item.price}}</p>
+            <input type="number" [value] = "item.quantity" min="1" (change) = "updateQuantity(item, $event)"/>
+            <button (click) = "removeItem(item.productId)">Remove</button>
+            </div>
+           
+        </div>
+        <div class="cart-summary">
+        <h3>Total: {{cartService.getTotal() }}</h3>
+        <button (click) = "goToCheckout()">Procees to Checkout</button>
+       
+    </div>
+   </div>   
+</div>

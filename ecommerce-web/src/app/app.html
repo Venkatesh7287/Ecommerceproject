@@ -1,0 +1,12 @@
+<nav>
+    <a routerLink="/products">Products</a>
+    <a routerLink = "/cart">Cart ({{ cartService.getItemsCount() }})</a>
+
+    <span *ngIf = "authService.isLoggedIn()">
+        <button (click)="logout()">
+            Logout
+        </button>
+    </span>
+</nav>
+
+<router-outlet></router-outlet>
